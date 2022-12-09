@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/password_manager.iml" filepath="$PROJECT_DIR$/.idea/password_manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../pomodoro/.idea/pomodoro.iml" filepath="$PROJECT_DIR$/../pomodoro/.idea/pomodoro.iml" />
     </modules>
   </component>
 </project>
