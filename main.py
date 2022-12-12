@@ -8,7 +8,11 @@ FONT_TUPLE = ("Arial", 17, "normal")
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
     data_line = f"{website_entry.get()} | {user_entry.get()} | {pw_entry.get()}"
-    print(data_line)
+    with open("data.txt", "a") as data:
+        data.write(f"{data_line}\n")
+    # clear entry fields except user_entry
+    website_entry.delete(0, END)
+    pw_entry.delete(0, END)
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -32,7 +36,7 @@ user_label = Label(text="Email/Username:")
 user_label.grid(column=0, row=2, sticky='E')
 
 user_entry = Entry(width=35)
-user_entry.insert(0, "cjmj1047@gmail.com")
+user_entry.insert(0, "default@email.com")
 user_entry.grid(column=1, row=2, columnspan=2, sticky='W')
 
 pw_label = Label(text="Password:")
