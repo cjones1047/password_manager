@@ -2,13 +2,16 @@ from tkinter import *
 
 FONT_TUPLE = ("Arial", 17, "normal")
 
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
+def save():
+    data_line = f"{website_entry.get()} | {user_entry.get()} | {pw_entry.get()}"
+    print(data_line)
+
 
 # ---------------------------- UI SETUP ------------------------------- #
-
-
 window = Tk()
 window.title("Password Manager")
 window.config(padx=50, pady=50)
@@ -41,7 +44,7 @@ pw_entry.grid(column=1, row=3, sticky='W')
 gen_pw_button = Button(text="Generate Password")
 gen_pw_button.grid(column=2, row=3)
 
-add_pw_button = Button(text="Add", width=36)
+add_pw_button = Button(text="Add", width=36, command=save)
 add_pw_button.grid(column=0, row=4, columnspan=3)
 
 window.mainloop()
