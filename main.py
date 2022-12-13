@@ -23,7 +23,8 @@ def generate_password():
 
     password = "".join(password_list)
 
-    return password
+    pw_entry.delete(0, END)
+    pw_entry.insert(0, password)
 
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
@@ -35,7 +36,6 @@ def save():
     if len(website) == 0 or len(user) == 0 or len(pw) == 0:
         messagebox.showerror(title="Error", message="Please fill all fields.")
     else:
-
         is_ok = messagebox.askokcancel(title=website, message=f"These are the details entered: "
                                                               "\n\n"
                                                               f"Email: {user}"
