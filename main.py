@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import random
+import pyperclip
 
 FONT_TUPLE = ("Arial", 17, "normal")
 
@@ -25,6 +26,8 @@ def generate_password():
 
     pw_entry.delete(0, END)
     pw_entry.insert(0, password)
+    pyperclip.copy(password)
+    messagebox.showinfo(title="Password Copied", message="Generated password was automatically copied to clipboard.")
 
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
