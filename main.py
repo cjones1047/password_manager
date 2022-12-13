@@ -1,9 +1,30 @@
 from tkinter import *
 from tkinter import messagebox
+import random
+
 FONT_TUPLE = ("Arial", 17, "normal")
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
+def generate_password():
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+               'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+               'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+
+    pw_letters = [random.choice(letters) for _ in range(4)]
+    pw_symbols = [random.choice(symbols) for _ in range(2)]
+    pw_numbers = [random.choice(numbers) for _ in range(2)]
+
+    password_list = pw_letters + pw_symbols + pw_numbers
+
+    random.shuffle(password_list)
+
+    password = "".join(password_list)
+
+    return password
+
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
@@ -60,7 +81,7 @@ pw_label.grid(column=0, row=3, sticky='E')
 pw_entry = Entry(width=21)
 pw_entry.grid(column=1, row=3, sticky='W')
 
-gen_pw_button = Button(text="Generate Password")
+gen_pw_button = Button(text="Generate Password", command=generate_password)
 gen_pw_button.grid(column=2, row=3)
 
 add_pw_button = Button(text="Add", width=36, command=save)
