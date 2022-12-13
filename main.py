@@ -1,5 +1,5 @@
 from tkinter import *
-
+from tkinter import messagebox
 FONT_TUPLE = ("Arial", 17, "normal")
 
 
@@ -7,12 +7,27 @@ FONT_TUPLE = ("Arial", 17, "normal")
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
-    data_line = f"{website_entry.get()} | {user_entry.get()} | {pw_entry.get()}"
-    with open("data.txt", "a") as data:
-        data.write(f"{data_line}\n")
-    # clear entry fields except user_entry
-    website_entry.delete(0, END)
-    pw_entry.delete(0, END)
+    website = website_entry.get()
+    user = user_entry.get()
+    pw = pw_entry.get()
+
+    if len(website) == 0 or len(user) == 0 or len(pw) == 0:
+        messagebox.showerror(title="Error", message="Please fill all fields.")
+    else:
+
+        is_ok = messagebox.askokcancel(title=website, message=f"These are the details entered: "
+                                                              "\n\n"
+                                                              f"Email: {user}"
+                                                              f"\nPassword: {pw}"
+                                                              "\n\n"
+                                                              "Is it ok to save?")
+        if is_ok:
+            data_line = f"{website} | {user} | {pw}"
+            with open("data.txt", "a") as data:
+                data.write(f"{data_line}\n")
+            # clear entry fields except user_entry
+            website_entry.delete(0, END)
+            pw_entry.delete(0, END)
 
 
 # ---------------------------- UI SETUP ------------------------------- #
