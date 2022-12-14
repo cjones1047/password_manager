@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import random
 import pyperclip
+import json
 
 FONT_TUPLE = ("Arial", 17, "normal")
 
@@ -35,23 +36,28 @@ def save():
     website = website_entry.get()
     user = user_entry.get()
     pw = pw_entry.get()
+    new_data = {
+        website: {
+            "email": user,
+            "password": pw,
+        }
+    }
 
     if len(website) == 0 or len(user) == 0 or len(pw) == 0:
         messagebox.showerror(title="Error", message="Please fill all fields.")
     else:
-        is_ok = messagebox.askokcancel(title=website, message=f"These are the details entered: "
-                                                              "\n\n"
-                                                              f"Email: {user}"
-                                                              f"\nPassword: {pw}"
-                                                              "\n\n"
-                                                              "Is it ok to save?")
-        if is_ok:
-            data_line = f"{website} | {user} | {pw}"
-            with open("data.txt", "a") as data:
-                data.write(f"{data_line}\n")
-            # clear entry fields except user_entry
-            website_entry.delete(0, END)
-            pw_entry.delete(0, END)
+        try:
+            with open("data.json", "r") as data_file:
+                data = json.load(data_file)
+                data.update(new_data)
+            with open("data.json", "w") as data_file:
+                json.dump(data, data_file, indent=4)
+        except FileNotFoundError:
+            with open("data.json", "w") as data_file:
+                json.dump(new_data, data_file, indent=4)
+        # clear entry fields except user_entry
+        website_entry.delete(0, END)
+        pw_entry.delete(0, END)
 
 
 # ---------------------------- UI SETUP ------------------------------- #
