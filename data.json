@@ -1,18 +1,14 @@
 {
     "IKEA": {
         "email": "default@email.com",
-        "password": "P12eEU$%"
-    },
-    "Ebay": {
-        "email": "default@email.com",
-        "password": "7#eL(ns3"
-    },
-    "Github": {
-        "email": "default@email.com",
-        "password": "OV6i()v3"
+        "password": "cU84+OO$"
     },
     "YouTube": {
         "email": "default@email.com",
-        "password": "YsV#4*5c"
+        "password": "skmL*44%"
+    },
+    "Ebay": {
+        "email": "default@email.com",
+        "password": "yL#66wF)"
     }
 }

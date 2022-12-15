@@ -9,7 +9,24 @@ FONT_TUPLE = ("Arial", 17, "normal")
 
 # ---------------------------- FIND PASSWORD ------------------------------- #
 def find_password():
-    pass
+    searched_website = website_entry.get()
+    try:
+        with open("data.json", "r") as data_file:
+            data = json.load(data_file)
+    except FileNotFoundError:
+        messagebox.showinfo(title="Error",
+                            message="No websites have been added yet.")
+    else:
+        if searched_website in data:
+            email = data[searched_website]["email"]
+            password = data[searched_website]["password"]
+            messagebox.showinfo(title=searched_website,
+                                message=f"Username: {email}\n"
+                                        f"Password: {password}")
+        else:
+            messagebox.showinfo(title="Sorry",
+                                message="That website hasn't been added yet. Please check spelling "
+                                        "and capitalization.")
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
