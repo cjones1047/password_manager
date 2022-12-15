@@ -7,6 +7,11 @@ import json
 FONT_TUPLE = ("Arial", 17, "normal")
 
 
+# ---------------------------- FIND PASSWORD ------------------------------- #
+def find_password():
+    pass
+
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password():
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
@@ -49,12 +54,13 @@ def save():
         try:
             with open("data.json", "r") as data_file:
                 data = json.load(data_file)
-                data.update(new_data)
-            with open("data.json", "w") as data_file:
-                json.dump(data, data_file, indent=4)
         except FileNotFoundError:
             with open("data.json", "w") as data_file:
                 json.dump(new_data, data_file, indent=4)
+        else:
+            data.update(new_data)
+            with open("data.json", "w") as data_file:
+                json.dump(data, data_file, indent=4)
         # clear entry fields except user_entry
         website_entry.delete(0, END)
         pw_entry.delete(0, END)
@@ -73,9 +79,12 @@ canvas.grid(column=0, row=0, columnspan=3)
 website_label = Label(text="Website:")
 website_label.grid(column=0, row=1, sticky='E')
 
-website_entry = Entry(width=35)
+website_entry = Entry(width=21)
 website_entry.focus()
-website_entry.grid(column=1, row=1, columnspan=2, sticky='W')
+website_entry.grid(column=1, row=1, sticky='W')
+
+search_button = Button(text="Search", command=find_password)
+search_button.grid(column=2, row=1, sticky="nsew")
 
 user_label = Label(text="Email/Username:")
 user_label.grid(column=0, row=2, sticky='E')
@@ -91,7 +100,7 @@ pw_entry = Entry(width=21)
 pw_entry.grid(column=1, row=3, sticky='W')
 
 gen_pw_button = Button(text="Generate Password", command=generate_password)
-gen_pw_button.grid(column=2, row=3)
+gen_pw_button.grid(column=2, row=3, sticky="nsew")
 
 add_pw_button = Button(text="Add", width=36, command=save)
 add_pw_button.grid(column=0, row=4, columnspan=3)
